@@ -1,25 +1,29 @@
-# llvm-transformation-pass
-Template for an out-of-tree LLVM pass.
+# LLVM Dataflow Info Printer Pass
+
+Tell us what some of LLVM's dataflow analyses think about the code
+being compiled.
 
 ## Requirements
- * LLVM 3.8
+ * LLVM 9 or higher
  * cmake 3.7
 
 ## Build
 ```
 mkdir build
 cd build
-cmake ..
+cmake .. -G Ninja
+ninja
 ```
 
 ## Run
 
-On Linux:
+On Linux, in the build directory:
 ```
-opt -load build/hello/LLVMHelloWorld.so -helloworld test/hello.bc
+opt -load ./LLVMDataflow.so -dataflow-info ../test/test1.ll
 ```
 
-On OS X:
+On OS X, in the build directory:
 ```
-opt -load build/hello/LLVMHelloWorld.dylib -helloworld test/hello.bc
+opt -load ./LLVMHelloWorld.dylib -dataflow-info ../test/test1.ll
+
 ```

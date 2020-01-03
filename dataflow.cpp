@@ -45,9 +45,9 @@ std::string bitString(KnownBits Known) {
   return s;
 }
 
-struct HelloWorld : public FunctionPass {
+struct DataflowInfo : public FunctionPass {
   static char ID;
-  HelloWorld() : FunctionPass(ID) {}
+  DataflowInfo() : FunctionPass(ID) {}
 
   void getAnalysisUsage(AnalysisUsage &Info) const {
     Info.addRequired<LazyValueInfoWrapperPass>();
@@ -99,23 +99,23 @@ struct HelloWorld : public FunctionPass {
     }
     return false;
   }
-}; // end of struct Hello
+}; // end of struct DataflowInfo
 }  // end of anonymous namespace
 
-char HelloWorld::ID = 0;
+char DataflowInfo::ID = 0;
 
-static RegisterPass<HelloWorld> X("helloworld", "Hello World Pass",
+static RegisterPass<DataflowInfo> X("dataflow-info", "Print dataflow information",
                              false /* Only looks at CFG */,
                              false /* Analysis Pass */);
 
 namespace llvm {
-void initializeHelloWorldPass(llvm::PassRegistry &);
+void initializeDataflowInfoPass(llvm::PassRegistry &);
 }
 
-INITIALIZE_PASS_BEGIN(HelloWorld, "hello",
-                      "Lazy Value Info Printer Pass", false, false)
+INITIALIZE_PASS_BEGIN(DataflowInfo, "dataflow-info",
+                      "Dataflow Info Printer Pass", false, false)
 INITIALIZE_PASS_DEPENDENCY(LazyValueInfoWrapperPass)
 INITIALIZE_PASS_DEPENDENCY(DemandedBitsWrapperPass)
 INITIALIZE_PASS_DEPENDENCY(ScalarEvolutionWrapperPass)
-INITIALIZE_PASS_END(HelloWorld, "hello",
-                    "Lazy Value Info Printer Pass", false, false)
+INITIALIZE_PASS_END(DataflowInfo, "dataflow-info",
+                    "Dataflow Info Printer Pass", false, false)
