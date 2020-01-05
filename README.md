@@ -19,11 +19,11 @@ ninja
 
 On Linux, in the build directory:
 ```
-opt -load ./LLVMDataflow.so -dataflow-info ../test/test1.ll
+opt -load ./LLVMDataflowInfo.so -dataflow-info ../test/test1.ll
 ```
 
 On OS X, in the build directory:
 ```
-opt -load ./LLVMHelloWorld.dylib -dataflow-info ../test/test1.ll
+opt -load ./LLVMDataflowInfo.dylib -dataflow-info ../test/test1.ll
 
 ```
