@@ -13,3 +13,6 @@ list(APPEND CMAKE_MODULE_PATH "${LLVM_CMAKE_DIR}")
 include(AddLLVM)
 
 add_llvm_library(LLVMDataflowInfo MODULE dataflow.cpp)
+
+llvm_map_components_to_libnames(llvm_libs support core irreader analysis)
+target_link_libraries(LLVMDataflowInfo ${llvm_libs})
